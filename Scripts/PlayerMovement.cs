@@ -47,12 +47,9 @@ public class PlayerMovement : MonoBehaviour
 
         GetComponent<Animator>().enabled = !(movement.x == 0f && movement.y == 0f);
         Vector2 lookDir = mousePos - body.position;
-        float angle = Mathf.Atan2(lookDir.y, mousePos.x>0?lookDir.x:Mathf.Abs(lookDir.x)) * Mathf.Rad2Deg - rotationOffset;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - rotationOffset;
         var rot = toRotate.transform.rotation;
-        if (mousePos.x < 0)
-            rot.eulerAngles = new Vector3(0,180,angle);
-        else
-            rot.eulerAngles = new Vector3(0, 0, angle);
+        rot.eulerAngles = new Vector3(0, 0, angle);
         toRotate.transform.rotation = rot;
     }
 }
